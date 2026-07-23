@@ -1,0 +1,33 @@
+{
+	"schemaVersion": 1,
+	"id": "humility-val",
+	"version": "${version}",
+	"name": "Humility Version Agnostic Library",
+	"description": "Humble Minecraft version agnostic library",
+	"authors": [
+		"Mikołaj Pokora (Miki-Liki)"
+	],
+	"contact": {
+		"homepage": "https://modrinth.com/mod/humility-val",
+		"sources": "https://github.com/MikiP98/HumilityVAL",
+		"issues": "https://github.com/MikiP98/HumilityVAL/issues"
+	},
+	"custom": {
+		"modmenu": {
+			"links": {
+				"modmenu.modrinth": "https://modrinth.com/mod/humility-val",
+				"modmenu.github_releases": "https://github.com/MikiP98/HumilityVAL/releases",
+				"modmenu.kofi": "https://ko-fi.com/miki277733"
+			}
+		}
+	},
+	"license": "GPLv3",
+	"icon": "assets/humility-val/icon.png",
+	"environment": "*",
+	"depends": {
+		"fabricloader": ">=${loader_version}",
+		"minecraft": "~${minecraft_version}",
+		"java": ">=${java_version}",
+		"fabric-api": "*"
+	}
+}
