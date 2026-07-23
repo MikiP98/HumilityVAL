@@ -60,11 +60,11 @@ repositories {
 loom {
 	splitEnvironmentSourceSets()
 
-	if (activeMcVersionNum <= 260000) {
-		accessWidenerPath = file("access_wideners/humilityval.v1.accesswidener")
-	} else {
-		accessWidenerPath = file("access_wideners/humilityval.v2.accesswidener")
-	}
+//	if (activeMcVersionNum <= 260000) {
+//		accessWidenerPath = file("access_wideners/humilityval.v1.accesswidener")
+//	} else {
+//		accessWidenerPath = file("access_wideners/humilityval.v2.accesswidener")
+//	}
 
 	mods {
 		"humility-val" {
