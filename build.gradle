@@ -57,14 +57,18 @@ repositories {
 	// for more information about repositories.
 }
 
+def accessWidenerVersion = ""
+if (activeMcVersionNum <= 260000) {
+	accessWidenerVersion = "v1"
+} else {
+	accessWidenerVersion = "v2"
+}
+def accessWidenerFile = "access_wideners/humilityval.${accessWidenerVersion}.accesswidener"
+
 loom {
 	splitEnvironmentSourceSets()
 
-	if (activeMcVersionNum <= 260000) {
-		accessWidenerPath = file("access_wideners/humilityval.v1.accesswidener")
-	} else {
-		accessWidenerPath = file("access_wideners/humilityval.v2.accesswidener")
-	}
+	accessWidenerPath = file("src/main/resources/${accessWidenerFile}")
 
 	mods {
 		"humility-val" {
@@ -109,12 +113,18 @@ processResources {
 	inputs.property "minecraft_version_number", project.mc_version_number.toInteger()
 	inputs.property "resource_pack_format", project.resource_pack_format
 	inputs.property "data_pack_format", project.data_pack_format
+	inputs.property "access_widener_file", accessWidenerFile
+
+	exclude { details ->
+		details.file.name.endsWith('.accesswidener') && !details.file.name.contains(accessWidenerVersion)
+	}
 
 	filesMatching("fabric.mod.json") {
 		expand "version": inputs.properties.version,
 				"java_version": inputs.properties.java_version,
 				"loader_version": inputs.properties.loader_version,
-				"minecraft_version": inputs.properties.minecraft_version
+				"minecraft_version": inputs.properties.minecraft_version,
+				"access_widener_file": inputs.properties.access_widener_file
 	}
 
 	doLast {

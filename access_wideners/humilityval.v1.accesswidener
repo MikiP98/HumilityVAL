@@ -1,6 +1,0 @@
-accessWidener v2 named
-
-# Fix for Fabric API's incomplete LivingEntity access wideners
-accessible method net/minecraft/world/entity/player/Player hurtArmor (Lnet/minecraft/world/damagesource/DamageSource;F)V
-accessible method net/minecraft/world/entity/player/Player hurtHelmet (Lnet/minecraft/world/damagesource/DamageSource;F)V
-accessible method net/minecraft/world/entity/player/Player hurtCurrentlyUsedShield (F)V
