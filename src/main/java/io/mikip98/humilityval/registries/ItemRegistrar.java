@@ -14,6 +14,7 @@ import net.minecraft.world.item.Item;
 #if MC_VERSION >= 12104 && MC_VERSION < 260000 import net.minecraft.world.item.Items; #endif
 
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 public class ItemRegistrar extends Registrar {
     public ItemRegistrar(String modId) {
@@ -23,18 +24,21 @@ public class ItemRegistrar extends Registrar {
     public Item register(String name) {
         return register(name, Item::new);
     }
-    public <T extends Item> T register(String name, Function<Item.Properties, T> factory) {
-        return register(name, factory, new Item.Properties());
+    public <T extends Item> T register(String name, Function<Item.Properties, T> itemFactory) {
+        return register(name, itemFactory, new Item.Properties());
+    }
+    public <T extends Item> T register(String name, Function<Item.Properties, T> itemFactory, Supplier<Item.Properties> itemProperties) {
+        return register(name, itemFactory, itemProperties.get());
     }
 
     #if MC_VERSION < 12104
-    public <T extends Item> T register(String name, Function<Item.Properties, T> factory, Item.Properties settings) {
-        return Registry.register(BuiltInRegistries.ITEM, getId(name), factory.apply(settings));
+    public <T extends Item> T register(String name, Function<Item.Properties, T> itemFactory, Item.Properties itemProperties) {
+        return Registry.register(BuiltInRegistries.ITEM, getId(name), itemFactory.apply(itemProperties));
     }
     #else
-    public <T extends Item> T register(String name, Function<Item.Properties, T> factory, Item.Properties settings) {
+    public <T extends Item> T register(String name, Function<Item.Properties, T> itemFactory, Item.Properties itemProperties) {
         final ResourceKey<Item> registryKey = ResourceKey.create(Registries.ITEM, getId(name));
-        return #if MC_VERSION < 260000 Items. #endif registerItem(registryKey, factory, settings);
+        return #if MC_VERSION < 260000 Items. #endif registerItem(registryKey, itemFactory, itemProperties);
     }
     #endif
 
