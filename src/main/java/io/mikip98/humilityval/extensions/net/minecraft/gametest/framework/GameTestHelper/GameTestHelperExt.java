@@ -13,5 +13,8 @@ public class GameTestHelperExt {
     public static void assertTrue(@This GameTestHelper gameTestHelper, boolean bl, String string) {
         gameTestHelper.assertTrue(bl, Component.literal(string));
     }
+    public static void fail(@This GameTestHelper gameTestHelper, String string) {
+        gameTestHelper.fail(Component.literal(string));
+    }
     #endif
 }
