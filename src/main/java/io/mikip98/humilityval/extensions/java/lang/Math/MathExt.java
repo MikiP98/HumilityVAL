@@ -28,7 +28,7 @@ public class MathExt {
         return Math.max(min, Math.min(max, value));
     }
 
-    private static <T extends Comparable<T>> void validate(T min, T max) {
+    protected static <T extends Comparable<T>> void validate(T min, T max) {
         if (min > max) throw new IllegalArgumentException(min + " > " + max);
     }
 }
