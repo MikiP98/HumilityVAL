@@ -5,7 +5,9 @@ import net.minecraft.resources.ResourceLocation;
 #else
 import net.minecraft.resources.Identifier;
 #endif
+import org.jetbrains.annotations.ApiStatus;
 
+@ApiStatus.Internal
 public abstract class Registrar {
     private final String modId;
     public Registrar(String modId) {
