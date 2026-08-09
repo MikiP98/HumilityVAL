@@ -29,6 +29,5 @@
 		"minecraft": "~${minecraft_version}",
 		"java": ">=${java_version}",
 		"fabric-api": "*"
-	},
-	"accessWidener": "${access_widener_file}"
+	}
 }
