@@ -103,6 +103,6 @@ public class AVLDataInput {
     public CompoundTag getRawTag() { return this.tag; }
     #if MC_VERSION >= 12006 public HolderLookup.Provider getRawRegistryLookup() { return this.registries; } #endif
     #else
-    public ValueInput getRawOutput() { return this.input; }
+    public ValueInput getRawInput() { return this.input; }
     #endif
 }
