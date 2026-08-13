@@ -9,7 +9,16 @@ import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
 #endif
 import net.minecraft.world.level.block.Block;
 
+/**
+ * Utility class for registering block render layers (Translucent, Cutout, etc.) before MC version 26.1.
+ * <p>Past 26.1, render layers are handled automatically based on the block texture translucency,
+ * on those versions these methods execute safely as no-ops.
+ */
 public final class BlockRenderLayerRegistryUtil {
+    /**
+     * Before 26.1 assigns blocks to the <b>Translucent</b> layer.
+     * <br> Past 26.1 executes a no-op.
+     */
     public static void putBlocksInTranslucent(Block... blocks) {
         #if MC_VERSION < 12105
         applyRenderLayer(RenderType.translucent(), blocks);
@@ -17,6 +26,14 @@ public final class BlockRenderLayerRegistryUtil {
         applyRenderLayer(ChunkSectionLayer.TRANSLUCENT, blocks);
         #endif
     }
+
+    /**
+     * Before 26.1 assigns blocks to the <b>Cutout Mipped</b> layer.
+     * <br> Past 26.1 executes a no-op.
+     *
+     * @apiNote In 1.21.11+, the CUTOUT_MIPPED layer was removed by Mojang.
+     * <br> On these versions, this method silently falls back to standard CUTOUT.
+     */
     public static void putBlocksInCutoutMipped(Block... blocks) {
         #if MC_VERSION < 12105
         applyRenderLayer(RenderType.cutoutMipped(), blocks);
@@ -26,6 +43,11 @@ public final class BlockRenderLayerRegistryUtil {
         applyRenderLayer(ChunkSectionLayer.CUTOUT, blocks);
         #endif
     }
+
+    /**
+     * Before 26.1 assigns blocks to the <b>Cutout</b> layer.
+     * <br> Past 26.1 executes a no-op.
+     */
     public static void putBlocksInCutout(Block... blocks) {
         #if MC_VERSION < 12105
         applyRenderLayer(RenderType.cutout(), blocks);
@@ -35,6 +57,14 @@ public final class BlockRenderLayerRegistryUtil {
     }
 
 
+    /**
+     * Directly applies a render layer to blocks.
+     * <br> Past 26.1 executes a no-op.
+     *
+     * @apiNote The first parameter signature changes across versions:
+     * <br> - Below 1.21.5: {@code RenderType}
+     * <br> - 1.21.5 and above: {@code ChunkSectionLayer}
+     */
     @UnstableApi
     #if MC_VERSION < 12105
     public static void applyRenderLayer(RenderType renderLayer, Block... blocks) {
