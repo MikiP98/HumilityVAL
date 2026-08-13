@@ -6,6 +6,9 @@ import net.minecraft.world.level.Level;
 
 @Extension
 public class LevelExt {
+    /**
+     * @return The absolute highest Y coordinate where a block can be placed.
+     */
     public static int avlGetTopBuildLimit(@This Level level) {
         #if MC_VERSION < 12104
         return level.getMaxBuildHeight() - 1;
@@ -13,6 +16,10 @@ public class LevelExt {
         return level.getMaxY();
         #endif
     }
+
+    /**
+     * @return The absolute lowest Y coordinate where a block can be placed.
+     */
     public static int avlGetBottomBuildLimit(@This Level level) {
         #if MC_VERSION < 12104
         return level.getMinBuildHeight();
