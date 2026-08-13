@@ -7,9 +7,15 @@ import net.minecraft.world.entity.player.Player;
 
 @Extension
 public class PlayerExt {
+    /**
+     * Sends a chat message to the player, executes only if called on the logical server.
+     */
     public static void avlSendServerMessage(@This Player player, String message) {
         avlSendServerMessage(player, Component.literal(message));
     }
+    /**
+     * Sends a chat message to the player, executes only if called on the logical server.
+     */
     @SuppressWarnings("resource")
     public static void avlSendServerMessage(@This Player player, Component message) {
         if (!player.level().isClientSide()) {
@@ -17,9 +23,15 @@ public class PlayerExt {
         }
     }
 
+    /**
+     * Sends a chat message to the player, executes only if called on the logical client.
+     */
     public static void avlSendClientMessage(@This Player player, String message) {
         player.avlSendClientMessage(Component.literal(message));
     }
+    /**
+     * Sends a chat message to the player, executes only if called on the logical client.
+     */
     @SuppressWarnings("resource")
     public static void avlSendClientMessage(@This Player player, Component message) {
         if (player.level().isClientSide()) {
@@ -27,6 +39,9 @@ public class PlayerExt {
         }
     }
 
+    /**
+     * Sends a chat message to the player, executes on both logical client and logical server.
+     */
     public static void avlSendMessage(@This Player player, String message) {
         player.avlSendMessage(Component.literal(message));
     }
