@@ -6,7 +6,7 @@ Parameters
 Licensor: Mikołaj Pokora
 Licensed Work: HumilityVAL, Copyright (C) 2026 Mikołaj Pokora
 Change Date: 1 year after the release date of this specific version.
-Change License: GNU Affero General Public License v3.0 (AGPL-3.0) with Additional Permissions under Section 7 (see LICENSE-AGPL file)
+Change License: GNU Affero General Public License v3.0 (AGPL-3.0) with Additional Permissions under Section 7 (see "LICENSE-AGPL" file)
 
 Additional Use Grant:
 1. Porting & Maintenance:
@@ -19,7 +19,9 @@ You may copy, modify, and distribute the Licensed Work itself before the Change 
 2. Linking & Dependency Use:
 You may link to the Licensed Work as a dependency to build your own distinct software projects or modifications, PROVIDED THAT your combined work is publicly released under either:
 (a) An Open Source Initiative (OSI) approved license; OR
-(b) The Business Source License 1.1, with a Change Date no greater than 1 year from the release of your work, the Change License set to match the Change License of this original work (including the Section 7 permissions), and retaining the entirety of this 'Additional Use Grant' section.
+(b) The Business Source License 1.1, with a Change Date no greater than 1 year from the release of your work, the Change License set to match the Change License of this original work (including the Section 7 permissions), and retaining the entirety of this 'Additional Use Grant' section; OR
+(c) The Business Source License 1.1, as defined in point (b) above, EXCEPT that you are permitted to modify the "Linking & Dependency Use" grant to allow independent modules to link to your work regardless of their license terms, provided that you strictly retain the prohibition against modifying the core source code of your work (as outlined in the Clarification below).
+Clarification: This grant applies solely to independent code that interacts with the Licensed Work. It does not apply to modified versions of the Licensed Work itself; any modifications to the core source code of this work remain subject to the full terms of this Business Source License (including restrictions on unauthorized production use).
 
 ========================================================================
 

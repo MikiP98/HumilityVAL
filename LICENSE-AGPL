@@ -1,11 +1,15 @@
 ADDITIONAL PERMISSIONS UNDER SECTION 7 OF THE GNU AGPLv3:
 
 1. Linking Exception:
-As a special exception, the copyright holders of this work grant you permission to link this work with independent modules, plugins, or modifications (including runtime bytecode manipulation frameworks such as Mixins), PROVIDED THAT those independent modules are publicly released under an Open Source Initiative (OSI) approved license. You may distribute the resulting combined work under the terms of that OSI-approved license, provided that you comply with the AGPL-3.0 for the unmodified Licensed Work itself.
+As a special exception, the copyright holders of this work grant you permission to link this work with independent modules, plugins, or modifications (including runtime bytecode manipulation frameworks such as Mixins), PROVIDED THAT those independent modules are publicly released under either:
+(a) An Open Source Initiative (OSI) approved license; OR
+(b) The Business Source License 1.1, with a Change Date no greater than 1 year from the release of your combined work, the Change License set to match the Change License of this original work (including these exact Section 7 permissions), and retaining the entirety of the original 'Additional Use Grant' section (see "LICENSE" file); OR
+(c) The Business Source License 1.1, as defined in point (b) above, EXCEPT that you are permitted to modify the linking grants and exceptions to allow independent modules to link to your work regardless of their license terms, provided that you strictly retain the prohibition against modifying the core source code of your work (as outlined in the Clarification below).
+You may distribute the resulting combined work under the terms of those respective licenses for the independent modules, provided that you comply with the AGPL-3.0 for the unmodified Licensed Work itself.
 Clarification: This exception applies solely to independent code that interacts with the Licensed Work. It does not apply to modified versions of the Licensed Work itself; any modifications to the core source code of this work remain subject to the full terms of the AGPL-3.0 (including Section 13 regarding network interaction).
 
 2. BSL Compatibility Exception:
-The copyright holders grant you additional permission to distribute combined or derivative works under the terms of the Business Source License 1.1, PROVIDED THAT your Change Date is no greater than 1 year from the release of your work, your Change License is set to match the Change License of this original work (including these exact Section 7 permissions), and your BSL retains the entirety of the original 'Additional Use Grant' section.
+The copyright holders grant you additional permission to distribute combined or derivative works under the terms of the Business Source License 1.1, PROVIDED THAT your Change Date is no greater than 1 year from the release of your work, your Change License is set to match the Change License of this original work (including these exact Section 7 permissions), and your BSL retains the entirety of the original 'Additional Use Grant' section (see "LICENSE" file).
 
 ========================================================================
 
