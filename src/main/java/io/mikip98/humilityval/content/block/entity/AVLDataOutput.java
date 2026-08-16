@@ -46,7 +46,7 @@ public class AVLDataOutput {
     public AVLDataOutput putFloat(String key, float value)     { tag.putFloat(key, value); return this; }
     public AVLDataOutput putDouble(String key, double value)   { tag.putDouble(key, value); return this; }
     public AVLDataOutput putString(String key, String value)   { tag.putString(key, value); return this; }
-    public AVLDataOutput putUUIDOr(String key, UUID value)     { tag.putUUID(key, value); return this; }
+    public AVLDataOutput putUUID(String key, UUID value)       { tag.putUUID(key, value); return this; }
     public AVLDataOutput putIntArray(String key, int[] value)  { tag.putIntArray(key, value); return this; }
     #else
     public AVLDataOutput putBoolean(String key, boolean value) { output.putBoolean(key, value); return this; }
@@ -61,11 +61,19 @@ public class AVLDataOutput {
     public AVLDataOutput putIntArray(String key, int[] value)  { output.putIntArray(key, value); return this; }
     #endif
 
+    /**
+     * Writes a BlockPos as a {@code long}. <br>
+     * This is the recommended method for {@code BlockPos} saving.
+     */
     public AVLDataOutput putBlockPos(String key, BlockPos value) {
         return putLong(key, value.asLong());
     }
 
 
+    /**
+     * Writes a BlockPos in a {@code Map}-like format. <br>
+     * It is recommended to use {@code putBlockPos} instead unless human-readable save data is strictly required.
+     */
     public AVLDataOutput putHumanReadableBlockPos(String key, BlockPos value) {
         #if MC_VERSION < 12105
         tag.put(key, NbtUtils.writeBlockPos(value));
@@ -75,6 +83,10 @@ public class AVLDataOutput {
         return this;
     }
 
+    /**
+     * Saves the contents of the provided list.
+     * @apiNote Vanilla hardcodes the save key. To save multiple lists, write them to separate {@link #child(String)} scopes.
+     */
     public AVLDataOutput saveItems(NonNullList<ItemStack> items) {
         #if MC_VERSION < 12006
         ContainerHelper.saveAllItems(tag, items);

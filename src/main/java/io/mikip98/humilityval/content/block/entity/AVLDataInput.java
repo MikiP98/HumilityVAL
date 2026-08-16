@@ -64,11 +64,19 @@ public class AVLDataInput {
 
     public int[] getIntArrayOrEmpty(String key) { return getIntArrayOr(key, new int[0]); }
 
+    /**
+     * Reads a BlockPos saved as a {@code long}. <br>
+     * This is the recommended method for {@code BlockPos} loading.
+     */
     public BlockPos getBlockPosOr(String key, BlockPos defaultValue) {
         return BlockPos.of(getLongOr(key, defaultValue.asLong()));
     }
 
 
+    /**
+     * Reads a BlockPos saved in a {@code Map}-like format. <br>
+     * It is recommended to use {@code getBlockPosOr} instead unless human-readable save data is strictly required.
+     */
     public BlockPos getHumanReadableBlockPosOr(String key, BlockPos defaultValue) {
         #if MC_VERSION < 12006
         return tag.contains(key) ? NbtUtils.readBlockPos(tag.getCompound(key)) : defaultValue;
@@ -79,6 +87,11 @@ public class AVLDataInput {
         #endif
     }
 
+    /**
+     * Mutates the provided list by loading saved items into it.
+     * @apiNote This will only load items up to the size of the provided list. It does not dynamically resize it.
+     * <br> Vanilla hardcodes the read key. To load multiple lists, read them from separate {@link #child(String)} scopes.
+     */
     public void loadItems(NonNullList<ItemStack> items) {
         #if MC_VERSION < 12006
         ContainerHelper.loadAllItems(tag, items);
