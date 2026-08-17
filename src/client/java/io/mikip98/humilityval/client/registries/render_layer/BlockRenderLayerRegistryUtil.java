@@ -1,10 +1,11 @@
 package io.mikip98.humilityval.client.registries.render_layer;
 
 import io.netty.util.internal.UnstableApi;
-#if MC_VERSION < 260000 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap; #endif
+#if MC_VERSION < 12105 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap; #endif
 #if MC_VERSION < 12105
 import net.minecraft.client.renderer.RenderType;
 #else
+#if MC_VERSION >= 12105 && MC_VERSION < 260000 import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap; #endif
 import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
 #endif
 import net.minecraft.world.level.block.Block;
