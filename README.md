@@ -7,9 +7,9 @@ to make supporting multiple MC versions easier.
 
 HumilityVAL ecosystem consists of:
 - ***this*** Minecraft mod library
-- separate optional IntelliJ IDEA plugin found [here](https://github.com/MikiP98/HumilityVAL-Plugin/releases)
+- separate optional IntelliJ IDEA plugin found [here](https://github.com/MikiP98/HumilityVAL-Plugin/releases) ***WIP***
 - custom optional preconfigured project template generator found ~~[here](TODO)~~ ***WIP***
-- custom semi-optional version of *BSL* to *AGPL* licence
+- custom semi-optional version of *BSL* to *AGPL* licence found ~~[here](TODO)~~ ***WIP***
 
 [//]: # (- optional Python package for mod building)
 
