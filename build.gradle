@@ -55,6 +55,7 @@ repositories {
 	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
 	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
 	// for more information about repositories.
+	mavenCentral()
 }
 
 loom {
@@ -77,6 +78,11 @@ dependencies {
 	annotationProcessor "systems.manifold:manifold-ext:${project.manifold_version}"
 	compileOnly "systems.manifold:manifold-ext:${project.manifold_version}"
 	implementation "systems.manifold:manifold-ext-rt:${project.manifold_version}"
+
+	// Fixes "cannot access Immutable" on BlockPos in 26.1+ caused by Manifold
+	// TODO: Report the issue to Manifold
+	if (activeMcVersionNum > 260000) compileOnly "com.google.code.findbugs:jsr305:3.0.2"
+
 
 	def loomGradle = activeMcVersionNum < 260000
 	String implementationConfig = loomGradle ? "modImplementation" : "implementation"
