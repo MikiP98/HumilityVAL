@@ -1,6 +1,6 @@
+#if MC_VERSION >= 12108
 package io.mikip98.humilityval.extensions.net.minecraft.gametest.framework.GameTestHelper;
 
-#if MC_VERSION >= 12108
 import manifold.ext.rt.api.Extension;
 import manifold.ext.rt.api.This;
 import net.minecraft.gametest.framework.GameTestHelper;

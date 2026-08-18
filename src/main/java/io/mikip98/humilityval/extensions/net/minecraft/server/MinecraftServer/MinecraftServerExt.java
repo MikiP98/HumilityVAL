@@ -1,6 +1,6 @@
+#if MC_VERSION == 12111
 package io.mikip98.humilityval.extensions.net.minecraft.server.MinecraftServer;
 
-#if MC_VERSION == 12111
 import manifold.ext.rt.api.Extension;
 import manifold.ext.rt.api.This;
 import net.minecraft.server.MinecraftServer;
