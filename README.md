@@ -55,3 +55,7 @@ Plus `Math.clamp(...)` port to JAVA 17
 ## Roadmap
 
 - documentation
+
+### Done
+
+- Added `.getGameRules()` method to `MinecraftServer` on 1.21.11
