@@ -1,4 +1,4 @@
-#if MC_VERSION <= 12111
+//#if MC_VERSION <= 12111
 //package io.mikip98.humilityval.extensions.net.minecraft.world.level.GameRules;
 //
 //import manifold.ext.rt.api.Extension;
@@ -18,4 +18,4 @@
 ////        return virtualGameRule.get();  // Not possible, 'GameRules.Value<T>' does not store the value...
 ////    }
 //}
-#endif
+//#endif
