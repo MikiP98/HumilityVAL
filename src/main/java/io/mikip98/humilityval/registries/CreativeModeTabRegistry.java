@@ -1,10 +1,13 @@
 package io.mikip98.humilityval.registries;
 
-#if MC_VERSION < 260000 import io.mikip98.humilityval.Util;
-import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup; #endif
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import io.mikip98.humilityval.Util;
+#if MC_VERSION < 260000 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup; #endif
+#if MC_VERSION < 260000 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents; #endif
+#if MC_VERSION >= 260000 import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents; #endif
+#if MC_VERSION >= 260000 import net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTab; #endif
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
+#if MC_VERSION >= 260000 import net.minecraft.resources.Identifier; #endif
 import net.minecraft.resources.ResourceKey;
 #if MC_VERSION < 260000 import net.minecraft.resources.ResourceLocation; #endif
 import net.minecraft.world.item.CreativeModeTab;

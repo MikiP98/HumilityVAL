@@ -1,10 +1,15 @@
 package io.mikip98.humilityval.registries;
 
 import io.mikip98.humilityval.Util;
-import net.minecraft.core.Registry;
-import net.minecraft.core.registries.BuiltInRegistries;
-#if MC_VERSION < 260000 import net.minecraft.resources.ResourceLocation; #endif
+#if MC_VERSION < 12104 import net.minecraft.core.Registry; #endif
+#if MC_VERSION < 12104 import net.minecraft.core.registries.BuiltInRegistries; #endif
+#if MC_VERSION < 12111 import net.minecraft.resources.ResourceLocation; #endif
+#if MC_VERSION >= 12111
+#if MC_VERSION >= 12104 import net.minecraft.core.registries.Registries; #endif
+import net.minecraft.resources.Identifier; #endif
+#if MC_VERSION >= 12104 import net.minecraft.resources.ResourceKey; #endif
 import net.minecraft.world.level.block.Block;
+#if MC_VERSION >= 12104 import net.minecraft.world.level.block.Blocks; #endif
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
 import java.util.function.Function;

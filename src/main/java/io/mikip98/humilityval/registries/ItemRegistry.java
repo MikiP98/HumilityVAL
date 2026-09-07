@@ -4,6 +4,10 @@ import io.mikip98.humilityval.Util;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 #if MC_VERSION < 260000 import net.minecraft.resources.ResourceLocation; #endif
+#if MC_VERSION >= 260000 import net.minecraft.resources.Identifier; #endif
+#if MC_VERSION >= 12104 import net.minecraft.core.registries.Registries; #endif
+#if MC_VERSION >= 12104 import net.minecraft.resources.ResourceKey; #endif
+#if MC_VERSION >= 260000 import net.minecraft.world.item.BlockItem; #endif
 import net.minecraft.world.item.Item;
 
 import java.util.function.Function;

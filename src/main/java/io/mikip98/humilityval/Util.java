@@ -1,6 +1,7 @@
 package io.mikip98.humilityval;
 
 #if MC_VERSION < 12111 import net.minecraft.resources.ResourceLocation; #endif
+#if MC_VERSION >= 12111 import net.minecraft.resources.Identifier; #endif
 import org.jetbrains.annotations.ApiStatus;
 
 // TODO: Expose to users
