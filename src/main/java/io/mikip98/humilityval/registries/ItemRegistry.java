@@ -1,14 +1,15 @@
 package io.mikip98.humilityval.registries;
 
 import io.mikip98.humilityval.Util;
-import net.minecraft.core.Registry;
-import net.minecraft.core.registries.BuiltInRegistries;
-#if MC_VERSION < 260000 import net.minecraft.resources.ResourceLocation; #endif
-#if MC_VERSION >= 260000 import net.minecraft.resources.Identifier; #endif
+#if MC_VERSION < 12104 import net.minecraft.core.Registry; #endif
+#if MC_VERSION < 12104 import net.minecraft.core.registries.BuiltInRegistries; #endif
+#if MC_VERSION < 12111 import net.minecraft.resources.ResourceLocation; #endif
+#if MC_VERSION >= 12111 import net.minecraft.resources.Identifier; #endif
 #if MC_VERSION >= 12104 import net.minecraft.core.registries.Registries; #endif
 #if MC_VERSION >= 12104 import net.minecraft.resources.ResourceKey; #endif
 #if MC_VERSION >= 260000 import net.minecraft.world.item.BlockItem; #endif
 import net.minecraft.world.item.Item;
+#if MC_VERSION >= 12104 && MC_VERSION < 260000 import net.minecraft.world.item.Items; #endif
 
 import java.util.function.Function;
 
@@ -21,7 +22,6 @@ public class ItemRegistry {
      * @param itemProperties  Unique properties for the item (must not be shared).
      * @return The registered item.
      */
-    #if MC_VERSION >= 12104 @SuppressWarnings("unchecked") #endif
     public static <T extends Item> T register(
             String modId, String name, Function<Item.Properties, T> itemFactory, Item.Properties itemProperties
     ) {
@@ -36,7 +36,7 @@ public class ItemRegistry {
      */
     #if MC_VERSION >= 12104 @SuppressWarnings("unchecked") #endif
     public static <T extends Item> T register(
-            #if MC_VERSION < 260000 ResourceLocation #else Identifier #endif id,
+            #if MC_VERSION < 12111 ResourceLocation #else Identifier #endif id,
             Function<Item.Properties, T> itemFactory,
             Item.Properties itemProperties
     ) {

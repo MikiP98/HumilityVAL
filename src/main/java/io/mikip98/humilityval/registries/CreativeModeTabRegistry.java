@@ -7,9 +7,9 @@ import io.mikip98.humilityval.Util;
 #if MC_VERSION >= 260000 import net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTab; #endif
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
-#if MC_VERSION >= 260000 import net.minecraft.resources.Identifier; #endif
+#if MC_VERSION < 12111 import net.minecraft.resources.ResourceLocation; #endif
+#if MC_VERSION >= 12111 import net.minecraft.resources.Identifier; #endif
 import net.minecraft.resources.ResourceKey;
-#if MC_VERSION < 260000 import net.minecraft.resources.ResourceLocation; #endif
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.ItemLike;
 
@@ -25,7 +25,7 @@ public class CreativeModeTabRegistry {
     public static CreativeModeTab register(String modId, String name, CreativeModeTab tab) {
         return register(Util.getId(modId, name), tab);
     }
-    public static CreativeModeTab register(#if MC_VERSION < 260000 ResourceLocation #else Identifier #endif id, CreativeModeTab tab) {
+    public static CreativeModeTab register(#if MC_VERSION < 12111 ResourceLocation #else Identifier #endif id, CreativeModeTab tab) {
         return Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, id, tab);
     }
 
