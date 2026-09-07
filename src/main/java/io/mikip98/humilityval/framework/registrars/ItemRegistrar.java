@@ -1,4 +1,4 @@
-package io.mikip98.humilityval.registries;
+package io.mikip98.humilityval.framework.registrars;
 
 #if MC_VERSION < 12104
 import net.minecraft.core.Registry;

@@ -1,9 +1,8 @@
-package io.mikip98.humilityval.registries;
+package io.mikip98.humilityval.framework.registrars;
 
+import io.mikip98.humilityval.registries.BlockRegistry;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 #if MC_VERSION < 12104
-import net.minecraft.core.Registry;
-import net.minecraft.core.registries.BuiltInRegistries;
 #endif
 #if MC_VERSION >= 12104
 import net.minecraft.core.registries.Registries;
@@ -85,14 +84,8 @@ public class BlockRegistrar extends Registrar {
      * @param blockProperties  Unique properties for the block (must not be shared).
      * @return The registered block.
      */
-    #if MC_VERSION >= 12104 @SuppressWarnings("unchecked") #endif
     public <T extends Block> T register(String name, Function<BlockBehaviour.Properties, T> blockFactory, BlockBehaviour.Properties blockProperties) {
-        #if MC_VERSION < 12104
-        return Registry.register(BuiltInRegistries.BLOCK, getId(name), blockFactory.apply(blockProperties));
-        #else
-        final ResourceKey<Block> registryKey = ResourceKey.create(Registries.BLOCK, getId(name));
-        return (T) Blocks.register(registryKey, (Function<BlockBehaviour.Properties, Block>) blockFactory, blockProperties);
-        #endif
+        return BlockRegistry.register(getId(name), blockFactory, blockProperties);
     }
 
 
