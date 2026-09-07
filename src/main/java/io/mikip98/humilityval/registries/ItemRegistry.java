@@ -1,8 +1,8 @@
 package io.mikip98.humilityval.registries;
 
 import io.mikip98.humilityval.Util;
-#if MC_VERSION < 12104 import net.minecraft.core.Registry; #endif
-#if MC_VERSION < 12104 import net.minecraft.core.registries.BuiltInRegistries; #endif
+#if MC_VERSION < 12104 || MC_VERSION > 260000 import net.minecraft.core.Registry; #endif
+#if MC_VERSION < 12104 || MC_VERSION > 260000 import net.minecraft.core.registries.BuiltInRegistries; #endif
 #if MC_VERSION < 12111 import net.minecraft.resources.ResourceLocation; #endif
 #if MC_VERSION >= 12111 import net.minecraft.resources.Identifier; #endif
 #if MC_VERSION >= 12104 import net.minecraft.core.registries.Registries; #endif
@@ -49,7 +49,6 @@ public class ItemRegistry {
     }
 
     #if MC_VERSION > 260000
-    @SuppressWarnings("unchecked")
     protected static Item registerItem(
     final ResourceKey<Item> key, final Function<Item.Properties, Item> itemFactory, final Item.Properties properties
     ) {
