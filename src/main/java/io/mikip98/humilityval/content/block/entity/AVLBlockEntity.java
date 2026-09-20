@@ -18,13 +18,13 @@ public abstract class AVLBlockEntity extends BlockEntity {
      * Replaces vanilla's {@code saveAdditional} method. <br>
      * Writes custom block entity data to the provided output.
      */
-    protected abstract void avlSaveAdditional(AVLDataOutput out);
+    protected void avlSaveAdditional(AVLDataOutput out) {}
 
     /**
      * Replaces vanilla's {@code load} or {@code loadAdditional} method depending on the Minecraft version. <br>
      * Reads custom block entity data from the provided input.
      */
-    protected abstract void avlLoadAdditional(AVLDataInput in);
+    protected void avlLoadAdditional(AVLDataInput in) {}
 
 
     #if MC_VERSION < 12006
@@ -61,6 +61,12 @@ public abstract class AVLBlockEntity extends BlockEntity {
     protected void saveAdditional(ValueOutput output) {
         super.saveAdditional(output);
         this.avlSaveAdditional(new AVLDataOutput(output));
+    }
+    #endif
+
+    #if POLYMER
+    public static class PolymerProperties {
+
     }
     #endif
 }
