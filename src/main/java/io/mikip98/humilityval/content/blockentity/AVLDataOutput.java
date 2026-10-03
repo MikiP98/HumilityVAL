@@ -1,4 +1,4 @@
-package io.mikip98.humilityval.content.block.entity;
+package io.mikip98.humilityval.content.blockentity;
 
 #if MC_VERSION >= 12006 && MC_VERSION < 12105 import net.minecraft.core.HolderLookup; #endif
 import net.minecraft.core.BlockPos;

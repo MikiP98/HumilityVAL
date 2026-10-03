@@ -1,17 +1,21 @@
-package io.mikip98.humilityval.content.block.entity;
+package io.mikip98.humilityval.content.blockentity;
 
+#if POLYMER import io.mikip98.humilityval.content.block.entity.polymer.PolymerBlockEntity; #endif
 import net.minecraft.core.BlockPos;
 #if MC_VERSION >= 12006 && MC_VERSION < 12105 import net.minecraft.core.HolderLookup; #endif
 #if MC_VERSION < 12105 import net.minecraft.nbt.CompoundTag; #endif
-import net.minecraft.world.level.block.entity.BlockEntity;
+#if !POLYMER import net.minecraft.world.level.block.entity.BlockEntity; #endif
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 #if MC_VERSION >= 12105 import net.minecraft.world.level.storage.ValueInput; #endif
 #if MC_VERSION >= 12105 import net.minecraft.world.level.storage.ValueOutput; #endif
 
-public abstract class AVLBlockEntity extends BlockEntity {
-    public AVLBlockEntity(BlockEntityType<?> blockEntityType, BlockPos blockPos, BlockState blockState) {
-        super(blockEntityType, blockPos, blockState);
+public abstract class AVLBlockEntity extends #if POLYMER PolymerBlockEntity #else BlockEntity #endif {
+    public AVLBlockEntity(
+            BlockEntityType<?> blockEntityType, BlockPos blockPos, BlockState blockState
+            #if POLYMER, PolymerProperties properties #endif
+    ) {
+        super(blockEntityType, blockPos, blockState #if POLYMER, properties #endif);
     }
 
     /**
@@ -61,12 +65,6 @@ public abstract class AVLBlockEntity extends BlockEntity {
     protected void saveAdditional(ValueOutput output) {
         super.saveAdditional(output);
         this.avlSaveAdditional(new AVLDataOutput(output));
-    }
-    #endif
-
-    #if POLYMER
-    public static class PolymerProperties {
-
     }
     #endif
 }
