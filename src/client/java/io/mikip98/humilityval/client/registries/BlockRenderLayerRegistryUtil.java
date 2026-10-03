@@ -1,4 +1,4 @@
-package io.mikip98.humilityval.client.registries.render_layer;
+package io.mikip98.humilityval.client.registries;
 
 import io.netty.util.internal.UnstableApi;
 #if MC_VERSION < 12105 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap; #endif
@@ -15,7 +15,7 @@ import net.minecraft.world.level.block.Block;
  * <p>Past 26.1, render layers are handled automatically based on the block texture translucency,
  * on those versions these methods execute safely as no-ops.
  */
-public final class BlockRenderLayerRegistryUtil {
+public class BlockRenderLayerRegistryUtil {
     /**
      * Before 26.1 assigns blocks to the <b>Translucent</b> layer.
      * <br> Past 26.1 executes a no-op.
@@ -78,4 +78,15 @@ public final class BlockRenderLayerRegistryUtil {
         #endif
     }
     #endif
+
+
+    @FunctionalInterface
+    public interface BlockConsumer {
+        void accept(Block... blocks);
+    }
+
+    @FunctionalInterface
+    public interface VarargConsumer<T> {
+        void accept(T... blocks);
+    }
 }
