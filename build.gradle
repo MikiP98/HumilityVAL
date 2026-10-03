@@ -23,6 +23,7 @@ if (versionPropsFile.exists()) {
 }
 
 def activeMcVersionNum = project.mc_version_number.toInteger()
+def isPolymer = project.hasProperty('polymer') && project.polymer == 'true'
 
 // Apply the correct Loom variant
 if (activeMcVersionNum < 260000) {
@@ -31,13 +32,9 @@ if (activeMcVersionNum < 260000) {
 	apply plugin: 'net.fabricmc.fabric-loom'
 }
 
-def buildNumberFile = file("build.number")
-def currentBuildNum = 1
-
-if (buildNumberFile.exists()) {
-	currentBuildNum = buildNumberFile.text.trim().toInteger()
-} else {
-	buildNumberFile.text = "1"
+def baseArchivesName = rootProject.name
+if (isPolymer) {
+	baseArchivesName += "-polymer"
 }
 
 version = "${project.mod_version}+${project.minecraft_version}"
@@ -47,7 +44,9 @@ manifold {
 	manifoldVersion = project.manifold_version
 }
 // Auto-generate build.properties so the Manifold IDE plugin and compiler stay in sync
-file("build.properties").text = "MC_VERSION=${project.ext.mc_version_number}\n"
+def buildPropsContent = "MC_VERSION=${project.ext.mc_version_number}\n"
+if (isPolymer) buildPropsContent += "POLYMER=true\n"
+file("build.properties").text = buildPropsContent
 
 repositories {
 	// Add repositories to retrieve artifacts from in here.
@@ -56,6 +55,13 @@ repositories {
 	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
 	// for more information about repositories.
 	mavenCentral()
+
+	// Polymer
+	if (isPolymer) maven { url 'https://maven.nucleoid.xyz' }
+}
+
+base {
+	archivesName = baseArchivesName
 }
 
 loom {
@@ -77,7 +83,11 @@ dependencies {
 	// Manifold extensions
 	annotationProcessor "systems.manifold:manifold-ext:${project.manifold_version}"
 	compileOnly "systems.manifold:manifold-ext:${project.manifold_version}"
-	implementation "systems.manifold:manifold-ext-rt:${project.manifold_version}"
+	implementation include("systems.manifold:manifold-ext-rt:${project.manifold_version}")
+
+	// Manifold extensions - release crash prevention
+	implementation include("systems.manifold:manifold-rt:${project.manifold_version}")
+	implementation include("systems.manifold:manifold-util:${project.manifold_version}")
 
 	// Fixes "cannot access Immutable" on BlockPos in 26.1+ caused by Manifold
 	// TODO: Report the issue to Manifold
@@ -99,6 +109,13 @@ dependencies {
 	// Fabric base dependencies
 	add(implementationConfig, "net.fabricmc:fabric-loader:${project.loader_version}")
 	add(implementationConfig, "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}")
+
+	if (isPolymer) {
+		add(implementationConfig, include("eu.pb4:polymer-core:${project.polymer_version}"))
+		add(implementationConfig, include("eu.pb4:polymer-blocks:${project.polymer_version}"))
+		add(implementationConfig, include("eu.pb4:polymer-resource-pack:${project.polymer_version}"))
+		add(implementationConfig, include("eu.pb4:polymer-virtual-entity:${project.polymer_version}"))
+	}
 }
 
 processResources {
@@ -160,6 +177,24 @@ jar {
 	from("LICENSE") {
 		rename { "${it}_$projectName"}
 	}
+	from("LICENSE-AGPL") {
+		rename { "${it}_$projectName"}
+	}
+
+	dependsOn('downloadManifoldLicense')
+	from(layout.buildDirectory.file("tmp/licenses/LICENSE_Manifold"))
+}
+tasks.register('downloadManifoldLicense') {
+	def destFile = layout.buildDirectory.file("tmp/licenses/LICENSE_Manifold").get().asFile
+	outputs.file(destFile)
+
+	doLast {
+		destFile.parentFile.mkdirs()
+		ant.get(
+				src: 'https://raw.githubusercontent.com/manifold-systems/manifold/master/LICENSE',
+				dest: destFile
+		)
+	}
 }
 
 // configure the maven publication
@@ -167,6 +202,7 @@ publishing {
 	publications {
 		create("mavenJava", MavenPublication) {
 			from components.java
+			artifactId = baseArchivesName
 		}
 	}
 
