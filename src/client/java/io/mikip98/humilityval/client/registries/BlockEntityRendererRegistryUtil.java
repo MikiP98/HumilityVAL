@@ -9,7 +9,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 /**
  * Utility class for registering Block Entity Renderers.
  */
-public final class BlockEntityRendererRegistryUtil {
+public class BlockEntityRendererRegistryUtil {
     /**
      * Registers a Block Entity Renderer provider to a Block Entity Type.
      * <br> The method signature changes across MC versions to match the required type of 'BlockEntityRendererProvider'.
